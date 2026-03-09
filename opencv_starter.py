@@ -9,7 +9,7 @@ import numpy as np
 import time
 
 #read in an image into memory
-img = cv.imread('C:/Y5/wvision/Orings/Oring1.jpg',0)
+img = cv.imread('C:/Users/joshu/OneDrive/Documents/GitHub/ComputerVision/Orings/Oring1.jpg',0)
 copy = img.copy()
 #check out some of its pixel values...img[x,y]..try different x and y values
 x = 100
