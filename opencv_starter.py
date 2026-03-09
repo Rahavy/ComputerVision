@@ -7,6 +7,7 @@
 import cv2 as cv
 import numpy as np
 import time
+import matplotlib.pyplot as plt
 
 #read in an image into memory
 img = cv.imread('C:/Users/joshu/OneDrive/Documents/GitHub/ComputerVision/Orings/Oring1.jpg',0)
@@ -16,6 +17,14 @@ x = 100
 y = 100
 pix = img[x,y]
 print("The pixel value at image location [" + str(x) + "," + str(y) + "] is:" + str(pix))
+
+#histogram
+plt.figure(figsize=(10,5))
+plt.hist(img.ravel(),256,[0,256])
+plt.title('Histogram of Image 1')
+plt.xlabel('Pixel Value')
+plt.ylabel('Frequency')
+plt.show()
 
 #implement thresholding ourselves using loops (soooo slow in python)
 before = time.time()
@@ -28,7 +37,7 @@ for x in range(0, img.shape[0]):
             img[x,y] = 0
 after = time.time()
 print("Time taken to process hand coded thresholding: " + str(after-before))
-cv.imshow('thresholded image 2',img)
+cv.imshow('thresholded image 1',img)
 cv.waitKey(0)
 
 #now lets use the opencv built in function to threshold the image
@@ -48,6 +57,14 @@ x = 100
 y = 100
 pix = img[x,y]
 print("The pixel value at image location [" + str(x) + "," + str(y) + "] is:" + str(pix))
+
+#histogram
+plt.figure(figsize=(10,5))
+plt.hist(img.ravel(),256,[0,256])
+plt.title('Histogram of Image 2')
+plt.xlabel('Pixel Value')
+plt.ylabel('Frequency')
+plt.show()
 
 #implement thresholding ourselves using loops (soooo slow in python)
 before = time.time()
