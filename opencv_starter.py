@@ -26,15 +26,42 @@ plt.xlabel('Pixel Value')
 plt.ylabel('Frequency')
 plt.show()
 
+#auto thresholding with otsus method from lecture 2
+hist = np.histogram(img.ravel(), 256, (0,256))[0]
+total = img.size
+sum_total = 0
+for t in range(256):
+    sum_total += t * hist[t]
+sumB = 0
+wB = 0
+varMax = 0
+threshold = 0
+for t in range(256):
+    wB += hist[t] #weight background
+    if wB == 0:
+        continue
+    wF = total - wB#weight foreground
+    if wF == 0:
+        break
+    sumB += t * hist[t]
+    mB = sumB / wB #mean background
+    mF = (sum_total - sumB) / wF #mean foreground
+    varBetween = wB * wF * (mB - mF) * (mB - mF) #between class variance
+    if varBetween > varMax:
+        varMax = varBetween
+        threshold = t
+print("auto thresholding", threshold)
+
+
 #implement thresholding ourselves using loops (soooo slow in python)
 before = time.time()
-thresh = 100
-for x in range(0, img.shape[0]):
-    for y in range(0, img.shape[1]):
-        if img[x,y] > thresh:
-            img[x,y] = 255
-        else:
-            img[x,y] = 0
+#thresh = 100
+#for x in range(0, img.shape[0]):
+#    for y in range(0, img.shape[1]):
+#        if img[x,y] > thresh:
+#            img[x,y] = 255
+#        else:
+#            img[x,y] = 0
 after = time.time()
 print("Time taken to process hand coded thresholding: " + str(after-before))
 cv.imshow('thresholded image 1',img)
