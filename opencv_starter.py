@@ -28,7 +28,7 @@ for x in range(0, img.shape[0]):
             img[x,y] = 0
 after = time.time()
 print("Time taken to process hand coded thresholding: " + str(after-before))
-cv.imshow('thresholded image 1',img)
+cv.imshow('thresholded image 2',img)
 cv.waitKey(0)
 
 #now lets use the opencv built in function to threshold the image
@@ -60,6 +60,53 @@ for x in range(0, img.shape[0]):
             img[x,y] = 0
 after = time.time()
 print("Time taken to process hand coded thresholding: " + str(after-before))
-cv.imshow('thresholded image 1',img)
+cv.imshow('thresholded image 2',img)
 cv.waitKey(0)
 
+
+
+#read in an image into memory
+img = cv.imread('C:/Users/joshu/OneDrive/Documents/GitHub/ComputerVision/Orings/Oring3.jpg',0)
+copy = img.copy()
+#check out some of its pixel values...img[x,y]..try different x and y values
+x = 100
+y = 100
+pix = img[x,y]
+print("The pixel value at image location [" + str(x) + "," + str(y) + "] is:" + str(pix))
+
+#implement thresholding ourselves using loops (soooo slow in python)
+before = time.time()
+thresh = 100
+for x in range(0, img.shape[0]):
+    for y in range(0, img.shape[1]):
+        if img[x,y] > thresh:
+            img[x,y] = 255
+        else:
+            img[x,y] = 0
+after = time.time()
+print("Time taken to process hand coded thresholding: " + str(after-before))
+cv.imshow('thresholded image 3',img)
+cv.waitKey(0)
+
+#read in an image into memory
+img = cv.imread('C:/Users/joshu/OneDrive/Documents/GitHub/ComputerVision/Orings/Oring4.jpg',0)
+copy = img.copy()
+#check out some of its pixel values...img[x,y]..try different x and y values
+x = 100
+y = 100
+pix = img[x,y]
+print("The pixel value at image location [" + str(x) + "," + str(y) + "] is:" + str(pix))
+
+#implement thresholding ourselves using loops (soooo slow in python)
+before = time.time()
+thresh = 100
+for x in range(0, img.shape[0]):
+    for y in range(0, img.shape[1]):
+        if img[x,y] > thresh:
+            img[x,y] = 255
+        else:
+            img[x,y] = 0
+after = time.time()
+print("Time taken to process hand coded thresholding: " + str(after-before))
+cv.imshow('thresholded image 4',img)
+cv.waitKey(0)
