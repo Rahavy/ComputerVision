@@ -65,7 +65,7 @@ after = time.time()
 print("Time taken to process hand coded thresholding: " + str(after-before))
 
 #binary morphology
-SE = np.arry([[0,1,0],#circle structure cuz rings are circuls 
+SE = np.array([[0,1,0],#circle structure cuz rings are circuls 
               [1,1,1],
               [0,1,0]])
 
