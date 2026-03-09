@@ -72,7 +72,7 @@ SE = np.array([[0,1,0],#circle structure cuz rings are circuls
 dilated = img.copy()
 
 for x in range(1, img.shape[0]-1):#goes to img but edges are blocked
-    for y in range(1, img.shape[0]-1):
+    for y in range(1, img.shape[1]-1):
         neighbourhood = img[x-1:x+2, y-1:y+2]#looks at the area around the pixel
         if np.any(neighbourhood == 255):#looks to find a white pixel in the neighbourhood then it sets the current pixel to white
             dilated[x,y] = 255
@@ -84,6 +84,15 @@ for x in range(1, dilated.shape[0]-1):#also goes to img
         neighbourhod = dilated[x-1:x+2, y-1:y+2]#also looks at the area around the pixel
         if np.any(neighbourhood == 0):#same but instead of looking for white its black and current pixel is turned black
             closed[x,y] = 0
+            
+#region analysis
+area = np.sum(closed == 255)#gets the white pixels in the last img
+print("area:", area)
+if area > 4000:#how much the ring takes up if it takes a enough space its probably a good if it dosent take enough space its bad
+    result ="good"
+else:
+    result = "bad"
+print("ring:", result)
 
 
 #text
